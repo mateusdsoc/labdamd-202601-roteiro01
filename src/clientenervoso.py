@@ -44,6 +44,7 @@ if __name__ == "__main__":
     
     threads = []
     # Dispara 10 clientes para garantir que a fila estoure
+    #para o desafio só alterei o 11 para 201, mas voltei ao original para commitar o arquivo
     for i in range(1, 11):
         t = threading.Thread(target=cliente_nervoso, args=(i,))
         threads.append(t)
