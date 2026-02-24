@@ -18,7 +18,13 @@ def cliente_nervoso(id_cliente):
         client.connect((HOST, PORT))
         
         # Se passou daqui, o SO aceitou a conexão (está no backlog ou sendo atendido)
-        print(f"[CLIENTE {id_cliente:02d}] 🟢 Conectou! Esperando resposta...")
+        print(f"[CLIENTE {id_cliente:02d}] 🟢 Conectou! Enviando requisição...")
+        
+        # ENVIA uma mensagem para o servidor (era o que faltava!)
+        client.send(f"Requisição do cliente {id_cliente:02d}".encode("utf-8"))
+        
+        # Aumenta timeout para receber resposta (servidor dorme 5 segundos)
+        client.settimeout(8)
         
         # Agora espera os dados
         msg = client.recv(1024)
